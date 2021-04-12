@@ -9,7 +9,8 @@
     "server-modules": "cd backend && npm install",
     "client-modules": "cd frontend && npm install",
     "project-config": "npm run server-modules && npm run client-modules",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "windows-dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "linux-dev": "npm run server | npm run client"
   },
   "repository": {
     "type": "git",
