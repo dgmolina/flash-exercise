@@ -4,7 +4,12 @@
   "description": "Exercício apresentado pela Flash Benefícios, com o objetivo de avaliar meus conhecimentos sobre lógica de programação, uso de API Rest e de banco de dados",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "cd .\\backend\\ && nodemon .\\server.js",
+    "client": "cd .\\frontend\\ && npm start",
+    "server-modules": "cd .\\backend\\ && npm install",
+    "client-modules": "cd .\\frontend\\ && npm install",
+    "project-config": "npm run server-modules && npm run client-modules",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -24,6 +29,7 @@
     "mongoose": "^5.12.3"
   },
   "devDependencies": {
+    "concurrently": "^6.0.1",
     "nodemon": "^2.0.7"
   }
 }
