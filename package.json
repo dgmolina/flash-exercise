@@ -4,10 +4,10 @@
   "description": "Exercício apresentado pela Flash Benefícios, com o objetivo de avaliar meus conhecimentos sobre lógica de programação, uso de API Rest e de banco de dados",
   "main": "index.js",
   "scripts": {
-    "server": "cd .\\backend\\ && nodemon .\\server.js",
-    "client": "cd .\\frontend\\ && npm start",
-    "server-modules": "cd .\\backend\\ && npm install",
-    "client-modules": "cd .\\frontend\\ && npm install",
+    "server": "cd backend && nodemon server.js",
+    "client": "cd frontend && npm start",
+    "server-modules": "cd backend && npm install",
+    "client-modules": "cd frontend && npm install",
     "project-config": "npm run server-modules && npm run client-modules",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
