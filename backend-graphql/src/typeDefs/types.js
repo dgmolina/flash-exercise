@@ -3,6 +3,7 @@ const { gql } = require('apollo-server');
 const types = gql`
 
   type Endereco {
+    cep: String
     bairro: String
     cidade: String
     logradouro: String
@@ -10,7 +11,7 @@ const types = gql`
   }
 
   type Empresa {
-    id: ID!
+    id: ID
     cnpj: String
 		nome: String
 		nomeFantasia: String
@@ -19,7 +20,7 @@ const types = gql`
   }
 
   type Funcionario {
-    id: ID!
+    id: ID
     cpf: String
     empresa: String
     nome: String

@@ -11,6 +11,7 @@ const mutation = gql`
   }
 
   input EnderecoInput {
+    cep: String
     bairro: String
     cidade: String
     logradouro: String
