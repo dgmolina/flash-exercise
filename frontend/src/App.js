@@ -1,21 +1,33 @@
 import React from 'react';
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+} from '@apollo/client';
 import { Layout } from 'antd';
 import 'antd/dist/antd.css';
+import Routes from './routes'
 
-import SearchEmployee from './components/search-employee.component';
+const client = new ApolloClient({
+  uri: "http://localhost:4000",
+  cache: new InMemoryCache(),
+});
+
 
 const {Header, Content} = Layout;
 
 function App() {
   return (
-    <Layout>
-      <Header>
-        <h1 style={{ color: 'white'}}>Exercício Dev</h1>
-      </Header>
-      <Content style={{ padding: '20px 50px' }}>
-        <SearchEmployee></SearchEmployee>
-      </Content>
-    </Layout>
+    <ApolloProvider client={ client }>
+      <Layout>
+        <Header>
+          <h1 style={{ color: 'white'}}>Exercício Dev</h1>
+        </Header>
+        <Content style={{ padding: '20px 50px' }}>
+          <Routes />
+        </Content>
+      </Layout>
+    </ApolloProvider>
   );
 }
 
