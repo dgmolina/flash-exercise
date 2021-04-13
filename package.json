@@ -23,8 +23,7 @@
     "url": "https://github.com/dgmolina/flash-exercise/issues"
   },
   "homepage": "https://github.com/dgmolina/flash-exercise#readme",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "concurrently": "^6.0.1",
     "nodemon": "^2.0.7"
