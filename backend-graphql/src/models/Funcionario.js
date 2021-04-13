@@ -13,6 +13,4 @@ const funcionarioSchema = new Schema({
   timestamps: true
 });
 
-const Funcionario = mongoose.model('Funcionario', funcionarioSchema);
-
-module.exports = Funcionario;
+module.exports = mongoose.model('Funcionario', funcionarioSchema);

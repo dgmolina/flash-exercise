@@ -12,8 +12,10 @@ const empresaSchema = new mongoose.Schema({
     numero: {type: Number, required: true},
   },
   beneficios: [String]
+},
+{
+  timestamps: true
 });
 
-const Empresa = mongoose.model("Empresa", empresaSchema)
 
-module.exports = Empresa;
+module.exports = mongoose.model("Empresa", empresaSchema)
