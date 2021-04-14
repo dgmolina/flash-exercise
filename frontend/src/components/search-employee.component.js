@@ -43,7 +43,6 @@ export default class SearchEmployee extends Component {
   componentDidMount() {
     axios.get('http://localhost:5000/companies')
     .then(response => {
-      console.log(response.data)
       this.setState({
         companies: response.data,
         companyTradingName: response.data[0].nomeFantasia
@@ -54,17 +53,16 @@ export default class SearchEmployee extends Component {
   comp
 
   onSelectCompany(option) {
-    const company = this.state.companies.filter(company => company.nomeFantasia === String(option))[0];
+    const company = this.state.companies.filter(company => company.nome === String(option))[0];
     axios.get('http://localhost:5000/employees/bycompany/'+company.cnpj)
       .then(response => {
-        console.log(response.data)
         this.setState({ employees: response.data });
       })
   }
 
   companyOptions() {
     return this.state.companies.map((company, i) => {
-      return <Option value={company.nomeFantasia} key={i}>{company.nomeFantasia}</Option>
+      return <Option value={company.nome} key={i}>{company.nomeFantasia}</Option>
     })
   }
 
