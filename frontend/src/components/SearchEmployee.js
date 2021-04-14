@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { gql, useQuery } from '@apollo/client'
 import { Select, Table} from 'antd';
 
@@ -40,6 +40,7 @@ export const GET_EMPRESAS = gql`
 export const GET_FUNCIONARIOS_POR_EMPRESA = gql`
   query GetFuncionario($empresa: String!) {
     funcionariosPorEmpresa(empresa: $empresa) {
+      id
       nome
       sobrenome
       cpf
@@ -48,46 +49,29 @@ export const GET_FUNCIONARIOS_POR_EMPRESA = gql`
   }
 `;
 
-const companyOptions = (companies) => {
-  return companies.map((company, i) => {
-    return <Option value={company.nome} key={i}>{company.nomeFantasia}</Option>
-  })
-}
-
-const EmployeesList = () => {
-
-  const [chosenCompany, setChosenCompany] = useState('');
-
-  const onCompanySelect = (nome) => {
-    setChosenCompany(nome);
-  }
+const CompanyOptions = (props) => {
 
   const { loading, error, data} = useQuery(GET_EMPRESAS);
   
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
+  
+  const listOfOptions = data.empresas.map((company, i) => (<Option value={company.nome} key={i}>{company.nomeFantasia}</Option>))
 
-  return (
-    <div>
-      <h2>Escolha uma empresa para visualizar a relação de seus funcionários</h2>
-
-      <Select defaultValue="Empresas..." style={{ width: 120 }} onChange={onCompanySelect}>
-        {companyOptions(data.empresas)}
-      </Select>
-      <h2>Lista de Funcionários</h2>
-      <EmployeesPerCompany nome={chosenCompany} />
-    </div>
+  return(
+    <Select defaultValue="Empresas..." style={{ width: 120 }} onChange={(value) => props.onSelectCompany(value)}>
+      {listOfOptions}
+    </Select>
   );
-};
+
+}
 
 const EmployeesPerCompany = (props) => {
   const empresa = props.nome;
-  console.log(empresa)
   const { loading, error, data} = useQuery(GET_FUNCIONARIOS_POR_EMPRESA, {variables: { empresa }});
 
   if (loading) return <p>Loading...</p>
   if (error) return <p>Error :(</p>
-
 
   return (
     <div>
@@ -96,5 +80,29 @@ const EmployeesPerCompany = (props) => {
   );
 }
 
-export default EmployeesList;
+//---------------------------------------------------------------------------------------------
+
+export default class SearchEmployee extends Component {
+  constructor(props) {
+    super(props);
+    this.onSelectCompany = this.onSelectCompany.bind(this);
+    this.state = { chosenCompany: ''}
+  }
+
+  onSelectCompany(value) {
+    this.setState({ chosenCompany: value})
+  }
+
+  render() {
+    return(
+      <div>
+        <h2>Escolha uma empresa para visualizar a relação de seus funcionários</h2>
+        <CompanyOptions onSelectCompany={this.onSelectCompany}/>
+        <h2>Lista de Funcionários</h2>
+        <EmployeesPerCompany nome={this.state.chosenCompany} />
+      </div>
+    );
+  }
+}
+
 
