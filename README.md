@@ -27,7 +27,7 @@ _Este passo difere para usuários Windows e usuários (Linux/Mac)_
 **Linux/Mac**<br>
 `npm run linux-dev`
 
-### Acesse a interface GraphiQL em: http://localhost:4000/
+### Acesse a interface Playground para interagir com o GraphQL: http://localhost:4000/
 
 ### Acesse a página do projeto em: http://localhost:3000/
 
