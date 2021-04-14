@@ -11,13 +11,10 @@ As intruções de uso para a versão **(React + GraphQL + Apollo)** estão descr
 ### 2. Acesse a nova pasta criada:<br>
 `cd flash-exercise`
 
-### 3. Instale as dependencias necessárias para configurar o projeto:
-`npm install`
-
-### 4. Instale as dependencias necessárias para testar o projeto:
+### 3. Instale as dependencias necessárias para testar o projeto:
 `npm run project-config`
 
-### 5. Instancie a aplicação:
+### 4. Instancie a aplicação:
 
 _Este passo difere para usuários Windows e usuários (Linux/Mac)_
 
